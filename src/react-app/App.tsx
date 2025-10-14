@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import "./App.css";
-import { env } from "cloudflare:workers";
 
 function App() {
   const [count, setCount] = useState(0);
@@ -34,14 +33,14 @@ function App() {
           Name from API is: {name}
         </button>
 
-        <button
+        {/* <button
           onClick={() => {
-            setName(env.weddingKv.get("test"));
+            setName();
           }}
           aria-label="get name"
         >
           Name from API is: {name}
-        </button>
+        </button> */}
       </div>
     </>
   );
