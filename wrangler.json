@@ -5,13 +5,13 @@
   "r2_buckets": [
     {
       "binding":"wedding",
-      "bucket_name": "<wedding_bucket>"
+      "bucket_name": "wedding_bucket"
     }
   ],
   "kv_namespaces": [
     {
-      "binding": "<wedding>",
-      "id": "<45a646698a0e4a4289342d7306ec66d6>"
+      "binding": "wedding",
+      "id": "45a646698a0e4a4289342d7306ec66d6"
     }
   ],
   "compatibility_date": "2025-10-08",
