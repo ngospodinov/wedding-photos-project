@@ -32,6 +32,15 @@ function App() {
         >
           Name from API is: {name}
         </button>
+
+        <button
+          onClick={() => {
+            setName(env.weddingKv.get("test"));
+          }}
+          aria-label="get name"
+        >
+          Name from API is: {name}
+        </button>
       </div>
     </>
   );
