@@ -32,15 +32,22 @@ function App() {
         >
           Name from API is: {name}
         </button>
-
-        {/* <button
-          onClick={() => {
-            setName();
+        <button
+          onClick={async () => {
+            try {
+              const res = await fetch("/test"); // endpoint from your Worker
+              if (!res.ok) throw new Error("Failed to fetch");
+              const data = await res.json();
+              setName(data.name ?? "(no value)");
+            } catch (err) {
+              console.error(err);
+              setName("(error)");
+            }
           }}
           aria-label="get name"
         >
-          Name from API is: {name}
-        </button> */}
+          Name from KV is: {name || "(none yet)"}
+        </button>
       </div>
     </>
   );
