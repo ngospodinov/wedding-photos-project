@@ -4,13 +4,13 @@
   "main": "./src/worker/index.ts",
   "r2_buckets": [
     {
-      "binding":"wedding",
-      "bucket_name": "wedding_bucket"
+      "binding":"wedding_bucket",
+      "bucket_name": "wedding"
     }
   ],
   "kv_namespaces": [
     {
-      "binding": "wedding",
+      "binding": "weddingKv",
       "id": "45a646698a0e4a4289342d7306ec66d6"
     }
   ],
