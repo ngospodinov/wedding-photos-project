@@ -11,7 +11,7 @@ const app = new Hono<{ Bindings: EnvBindings }>();
 app.get("/api/", (c) => c.json({ name: "MAINA" }));
 
 app.get("/test", async (c) => {
-  const value = await c.env.weddingKv.get("test-value");
+  const value = await c.env.weddingKv.get("test-key");
   return c.json({ name: value ?? null });
 });
 
