@@ -8,11 +8,22 @@ type EnvBindings = {
 
 const app = new Hono<{ Bindings: EnvBindings }>();
 
-app.get("/api/", (c) => c.json({ name: "MAINA" }));
+app.get("api/photos")
 
-app.get("/test", async (c) => {
-  const value = await c.env.weddingKv.get("test-key");
-  return c.json({ name: value ?? null });
+app.post("api/upload", async (c) => {
+  const formData = await c.req.formData();
+  const file = formData.get("file") as File | null;
+  if(!file) return c.json({error: "Няма прикачен файл."}, 400);
+  
+  const key = `${Date.now()}-${file.name}}`;
+  await c.env.wedding_bucket.put(key, file);
+
+  await c.env.weddingKv.put(key, JSON.stringify({
+    name: file.name,
+    uploaded: new Date().toISOString(),
+  }))
+
+  return c.json({success: true, key});
 });
 
 // Export a fetch handler for Cloudflare
