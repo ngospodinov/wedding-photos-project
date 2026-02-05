@@ -11,7 +11,7 @@ function App() {
   
       <DearGuests/>
 
-      <UploadCard />
+      {/* <UploadCard /> */}
     </div>
   );
 }
