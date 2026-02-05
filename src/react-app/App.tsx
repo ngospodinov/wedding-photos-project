@@ -1,18 +1,18 @@
 // src/App.tsx
 import "./App.css";
+import DearGuests from "./components/DearGuests";
 import UploadCard from "./components/UploaderCard";
+import Hero from "./components/Hero";
 
 function App() {
   return (
-    <>
-      <h1>Скъпи гости!</h1>
-      <p>
-        Ще се радваме ако можете да ни помогнете като снимате по време на нашата
-        сватба и качите снимките си :)
-      </p>
+    <div className="bg-[#fff4d6] flex flex-col items-center justify-center min-h-screen  gap-6 text-text font-serif mx-0">
+      <Hero/>
+  
+      <DearGuests/>
 
       <UploadCard />
-    </>
+    </div>
   );
 }
 

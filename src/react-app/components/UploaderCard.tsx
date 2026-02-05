@@ -1,93 +1,31 @@
-import { useState } from "react";
+// src/components/UploadSection.tsx
+import CameraIcon from "@/react-app/assets/camera.svg";
 
-export default function UploadCard() {
-  const [status, setStatus] = useState<string>("");
-  const [fileName, setFileName] = useState<string>("");
-
-  const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setFileName(file.name);
-    setStatus("Uploading...");
-
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
-
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) throw new Error("Нещо се обърка при качването.");
-
-      const data = await res.json();
-      console.log("Uploaded:", data);
-      setStatus("Успешно качване!");
-    } catch (err) {
-      console.error(err);
-      setStatus("Неуспешно качване :(");
-    }
-  };
-
+export default function UploadSection() {
   return (
-    <div className="card w-full max-w-sm mx-auto mt-10 p-6 rounded-2xl shadow-lg bg-white flex flex-col items-center gap-4 border border-gray-100">
-      <h2 className="text-xl font-semibold text-gray-800">
-        Upload your memories
-      </h2>
-
-      <label
-        htmlFor="file-upload"
-        className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-gray-300 rounded-xl cursor-pointer bg-gray-50 hover:bg-gray-100 transition"
-      >
-        <div className="flex flex-col items-center justify-center pt-5 pb-6 text-gray-500">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="w-10 h-10 mb-3 text-gray-400"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 010 10H7z"
+    <section className="w-full">
+      <div className="w-full max-w-4xl px-6 flex flex-col items-center justify-center">
+        {/* Inner light blue rectangle */}
+        <div className="w-full bg-[#EAF2F8] shadow-[6px_6px_0_black]">
+          {/* Camera Icon */}
+          <div className="flex justify-center transform transition-transform duration-300 hover:scale-110 mb-4">
+            <img
+              src={CameraIcon}
+              className="w-[180px] sm:w-[220px] md:w-[260px] lg:w-[300px] h-auto"
             />
-          </svg>
-          <p className="text-sm">
-            <span className="font-medium">Tap to upload</span> or drag and drop
-          </p>
-          <p className="text-xs text-gray-400">PNG, JPG, or MP4 up to 20MB</p>
-        </div>
-        <input
-          id="file-upload"
-          type="file"
-          accept="image/*,video/*"
-          onChange={handleUpload}
-          className="hidden"
-        />
-      </label>
+          </div>
 
-      {fileName && (
-        <p className="text-sm text-gray-700">
-          <span className="font-semibold">Selected:</span> {fileName}
-        </p>
-      )}
-      {status && (
-        <p
-          className={`text-sm ${
-            status.includes("✅")
-              ? "text-green-600"
-              : status.includes("❌")
-              ? "text-red-600"
-              : "text-gray-600"
-          }`}
-        >
-          {status}
-        </p>
-      )}
-    </div>
+          {/* Title */}
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold tracking-wide text-text font-serif text-center py-2">
+            СПОДЕЛЕТЕ СНИМКИТЕ СИ
+          </h2>
+        </div>
+
+        {/* Yellow button */}
+        <button className="bg-[#FFF4D6] px-8 sm:px-10 py-3 sm:py-4 font-bold shadow-[6px_6px_0_black] active:translate-y-1 active:shadow-none transition-transform duration-150 w-[60%] max-w-[300px]">
+          КАЧВАНЕ
+        </button>
+      </div>
+    </section>
   );
 }
