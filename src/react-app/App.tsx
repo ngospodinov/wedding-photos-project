@@ -6,12 +6,12 @@ import Hero from "./components/Hero";
 
 function App() {
   return (
-    <div className="bg-[#fff4d6] flex flex-col items-center justify-center min-h-screen  gap-6 text-text font-serif mx-0">
+    <div className="bg-[#fff4d6] flex flex-col items-center justify-center min-h-screen  mx-0">
       <Hero/>
   
       <DearGuests/>
 
-      {/* <UploadCard /> */}
+      <UploadCard />
     </div>
   );
 }
