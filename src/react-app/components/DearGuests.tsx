@@ -1,12 +1,13 @@
 // src/components/DearGuests.tsx
 export default function DearGuests() {
   return (
-      <div className="bg-[#FFC1CC] lg:max-w-6xl flex flex-col items-center shadow-[6px_6px_0_black] 
-                      justify-center sm:shadow-[12px_12px_0_black] py-4 px-6 mx-6 my-6 sm:my-8">
+      <div className="bg-[#FFC1CC] lg:max-w-6xl flex flex-col shadow-[6px_6px_0_black] 
+                      justify-center items-left sm:shadow-[12px_12px_0_black] py-4 px-6 mx-6 my-6 sm:my-8
+                      w-[90%] xs:w-full">
      
         {/* Title */}
         <h1
-          className="font-serif font-bold text-text
+          className="font-serif font-bold 
                      text-4xl sm:text-5xl md:text-6xl lg:text-7xl
                      leading-[1.36]
                      mb-2 tracking-[0.04em]"
