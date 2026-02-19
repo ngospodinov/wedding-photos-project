@@ -1,39 +1,8 @@
-import { useEffect, useState } from "react";
+type GalleryProps = {
+  images: string[];
+};
 
-export default function Gallery() {
-  const [images, setImages] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    async function fetchImages() {
-      try {
-        const res = await fetch(
-          "api/photos"
-        );
-
-        const data: unknown = await res.json();
-
-        if (
-          typeof data === "object" &&
-          data !== null &&
-          "images" in data &&
-          Array.isArray((data as any).images)
-        ) {
-          setImages((data as any).images);
-        } else {
-          setImages([]);
-        }
-      } catch (error) {
-        console.error("Failed to load images:", error);
-        setImages([]);
-      } finally {
-        setLoading(false);
-      }
-    }
-
-    fetchImages();
-  }, []);
-
+export default function Gallery({ images }: GalleryProps) {
   return (
     <div className="w-[90%] xs:w-full mx-6 mb-6 sm:mb-8 flex flex-col justify-center items-start lg:max-w-6xl">
       <div className="bg-[#FFC1CC] shadow-[6px_6px_0_black] sm:shadow-[12px_12px_0_black] w-full mb-6">
@@ -43,16 +12,11 @@ export default function Gallery() {
       </div>
 
       <div className="grid grid-cols-2 gap-4 w-full">
-        {loading ? (
-          <p>Loading...</p>
-        ) : images.length === 0 ? (
-          <p>No images yet.</p>
+        {images.length === 0 ? (
+          <p className="col-span-2 text-gray-600">No images yet.</p>
         ) : (
           images.map((key) => (
-            <div
-              key={key}
-              className="aspect-square overflow-hidden rounded-lg"
-            >
+            <div key={key} className="aspect-square overflow-hidden rounded-lg">
               <img
                 src={`/api/photos/${key}`}
                 alt="Wedding photo"

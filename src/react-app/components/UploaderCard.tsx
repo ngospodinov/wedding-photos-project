@@ -1,9 +1,13 @@
 import CameraIcon from "@/react-app/assets/camera.svg";
 import { useState } from "react";
 
-export default function UploadSection() {
-  const [status, setStatus] = useState<string>("");
-  const [fileName, setFileName] = useState<string>("");
+type UploadCardProps = {
+  onUpload?: (key: string) => void;
+};
+
+export default function UploadCard({ onUpload }: UploadCardProps) {
+  const [status, setStatus] = useState("");
+  const [fileName, setFileName] = useState("");
 
   const handleUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -25,7 +29,13 @@ export default function UploadSection() {
 
       const data = await res.json();
       console.log("Uploaded:", data);
+
       setStatus("Успешно качване!");
+
+      // ✅ Notify parent to add the new image to gallery immediately
+      if (onUpload && data.key) {
+        onUpload(data.key);
+      }
     } catch (err) {
       console.error(err);
       setStatus("Неуспешно качване :(");
