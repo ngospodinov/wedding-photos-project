@@ -1,10 +1,10 @@
 export default function Gallery() {
-     const images = [
-    "https://picsum.photos/600/600?1",
-    "https://picsum.photos/600/600?2",
-    "https://picsum.photos/600/600?3",
-    "https://picsum.photos/600/600?4",
-  ];
+//      const images = [
+//     "https://picsum.photos/600/600?1",
+//     "https://picsum.photos/600/600?2",
+//     "https://picsum.photos/600/600?3",
+//     "https://picsum.photos/600/600?4",
+//   ];
   return (
         <div className="w-[90%] xs:w-full mx-6 mb-6 sm:mb-8 flex flex-col justify-center items-start
                         lg:max-w-6xl"
